@@ -52,3 +52,8 @@ Po wielu testach, najlepszy wynik uzyskaliśmy przy użyciu modelu:
     model.compile(loss='categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
+                  
+Przy ustawieniach trenowania:
+    result = model.fit(X_train, y_train, batch_size=128, epochs=35, validation_data=(X_val, y_val))
+
+Model na zbiorze testowym osiąga sprawność około 64%. Przy losowym wybieraniu byłoby to 20%. Pomimo, że wynik nie jest bardzo wysoki, należy pamiętać, że emocje są trudne do rozpoznania, nie tylko dla maszyny, a dataset zawierał tylko po 4000 zdjęć każdego typu. 
