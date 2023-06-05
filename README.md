@@ -16,6 +16,8 @@ Dane służące do ćwiczenia i testowania pochodzą z https://www.kaggle.com/da
 # Działanie:
 Main.py jest aplikacją, która tworzy plik z danymi i etykietami (o ile już nie istnieją). Następnie tworzy model składający się trzech warstw Conv2D oraz czterech Dense i uczy go na podstawie wcześniej utworzonego pliku. Po zakończeniu procesu nauki wyświetla okno PyPlot z wynikami.
 
+Test.py wczytuje model i sprawdza za jego pomocą zdjęcie wybrane przez użytkownika. Następnie losuje z folderu zawierającego dźwięki jeden, pasujący do emocji i go uruchamia.
+
 # Model:
 Po wielu testach, najlepszy wynik uzyskaliśmy przy użyciu modelu:
     model = Sequential()
@@ -55,5 +57,8 @@ Po wielu testach, najlepszy wynik uzyskaliśmy przy użyciu modelu:
                   
 Przy ustawieniach trenowania:
     result = model.fit(X_train, y_train, batch_size=128, epochs=35, validation_data=(X_val, y_val))
+Dataset został podzielony na zbiór uczący i walidujący w proporcjach 90-10.
+Wysoka wartość parametru Dropout() wynika z tego, że zbyt szybko następował overfitting. Przy wartości 0.10 po 10 epochach celność na zbiorze treningowym osiągała 68-72%, a na walidującym 60-62%. Po zmianie wartości na 0.25, celność na zbiorze walidującym nie różniła się od treningowego o więcej niż 2-3% do 30 epochu i osiągała do 64%.
 
-Model na zbiorze testowym osiąga sprawność około 64%. Przy losowym wybieraniu byłoby to 20%. Pomimo, że wynik nie jest bardzo wysoki, należy pamiętać, że emocje są trudne do rozpoznania, nie tylko dla maszyny, a dataset zawierał tylko po 4000 zdjęć każdego typu. 
+# Wyniki:
+Model na zbiorze testowym osiąga sprawność około 64%. Przy losowym wybieraniu byłoby to 20%. Pomimo, że wynik nie jest bardzo wysoki, należy pamiętać, że emocje są trudne do rozpoznania, nie tylko dla maszyny, a dataset zawierał tylko po 4000 zdjęć każdego typu, z czego niewielka część była uszkodzona.
